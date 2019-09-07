@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>HonestRX</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+    </head>
+
+    <body>
+        <div id="banner">HonestRX</div>
+        <div id="container" class="container col m8 offset-m2">
+            <div id='description'> Too often the fair price for your prescription drugs is hidden from you.  Please use HonestRX to search for any prescrption drug, see the honest and fair market price, and where to find them.  We do not store your data or share it with anyone.  We only help consumers find the most affordable prescriptions possible.</div>
+            <div id='searchBar' class='input-field col m6'>
+                <input placeholder="Placeholder" id="searchBar" type="text" class="validate">
+                <label for="searchBar">Search Prescription Name</label>    
+            </div>
+            <div id='confirmation-section' class='row'>
+                <div id='confirmRx'></div>
+                <div id='saveButton'></div>
+            </div>
+            <div id='search-output'>
+                <div class='row'></div>
+                <div id='pharmacy-list' class = 'col m6'></div>
+                <div id='pharmacy-map' class = 'col m6'></div>
+            </div>
+        </div>
+    </body>
+
+   
