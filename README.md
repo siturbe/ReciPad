@@ -1,2 +1,2 @@
-# HonestRX
-HonestRX - Group Assignment 1
+# ReciPad
+ReciPad - Group Assignment 1
