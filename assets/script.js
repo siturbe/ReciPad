@@ -1,3 +1,70 @@
+
+
+
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAg1Jfe5UX_hieHr8S2rRjwVMEd-AuxWng",
+    authDomain: "recipad-ddf61.firebaseapp.com",
+    databaseURL: "https://recipad-ddf61.firebaseio.com",
+    projectId: "recipad-ddf61",
+    storageBucket: "",
+    messagingSenderId: "633336468983",
+    appId: "1:633336468983:web:9b09e18f4668e9c2344af2"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+//   ui.start('#firebaseui-auth-container', {
+//     signInOptions: [
+//         {
+//         provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+//         requireDisplayName: false,
+//         },
+//         firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+//     ],
+//     // Other config options...
+//   });
+
+  var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+  var uiConfig = {
+    callbacks: {
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        // User successfully signed in.
+        // Return type determines whether we continue the redirect automatically
+        // or whether we leave that to developer to handle.
+        return true;
+      },
+      uiShown: function() {
+        // The widget is rendered.
+        // Hide the loader.
+        document.getElementById('loader').style.display = 'none';
+      }
+    },
+    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
+    signInFlow: 'popup',
+    signInSuccessUrl: 'index.html',
+    signInOptions: [
+      // Leave the lines as is for the providers you want to offer your users.
+    //   firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    //   firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    //   firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    //   firebase.auth.GithubAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      firebase.auth.PhoneAuthProvider.PROVIDER_ID
+    ],
+    // Terms of service url.
+    tosUrl: '<your-tos-url>',
+    // Privacy policy url.
+    privacyPolicyUrl: '<your-privacy-policy-url>'
+  };
+
+
+// The start method will wait until the DOM is loaded.
+ui.start('#firebaseui-auth-container', uiConfig);
+
+
+
 //Pull the data from the API
 
 let vegeterian;
@@ -12,6 +79,8 @@ let recipeID;
 let recipeIDs=[];
 let savedRecipes=[];
 let ingredientList=[];
+let noUnitIngredientList = [];
+
 
 function getSearchResults(){
     $('#recipe-list').empty();
@@ -111,7 +180,7 @@ function addRecipesToSavedList(){
         });
     }
 
-    recipeIDs = [];
+    recipeIDs = []; //this keeps the for loop from adding what it added the prior loop again
     
     console.log(savedRecipes);
 }
@@ -146,7 +215,7 @@ function showSavedRecipes(){
 
         let rList = $('<ul>')
         $.each(subIngredientArray,function(i){
-            let li = $('<li/>').addClass('ui-ingredient').text(subIngredientArray[i]).appendTo(rList);
+            let li = $('<li/>').text(subIngredientArray[i]).appendTo(rList);
         });
 
         recipeSavedDiv.append(pTitleSaved);
@@ -162,18 +231,40 @@ function showSavedRecipes(){
 
 function generateGroceryList(){
     $('#recipe-list').empty();
+    // for(let i=0; i < savedRecipes.length; i++){
+    //     let ingredientNameArray = savedRecipes[i].originalName;
+    //     let ingredientNameSubArray = [];
+
+    //     for(let j=0; j<ingredientNameArray.length; j++){
+    //         ingredientNameSubArray.push(ingredientNameArray[j].originalName);
+    //     };
+
+    //     noUnitIngredientList.push(...ingredientNameSubArray);
+    // }
+
+
     let groceryMessage = $('<h5>Here are all the ingredients you need for your saved recipes: </h5>');
     let groceryListDiv = $("<div class='groceryListDiv'>");
+    // let itemCheckbox = $("<input type='checkbox'></input>");
+    
 
-    let gList= $('<ul>')
+    let gList= $('<ul class="itemsForList">')
     $.each(ingredientList, function(i){
-        let li = $('<li/>').text(ingredientList[i]).appendTo(gList);
+        let li = $("<li/>").text(ingredientList[i]).addClass('ui-ingredient').appendTo(gList);
     });
 
     groceryListDiv.append(groceryMessage);
     groceryListDiv.append(gList);
+
     $('#recipe-list').append(groceryListDiv);
 }
+
+
+
+
+
+
+
 
 
 $(document).on('click','#searchButton',getSearchResults);

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>ReciPad</title>
+        <link rel="stylesheet" href='assets/reset.css'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>   
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link rel="stylesheet" href='assets/style.css'>
+
+        <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-app.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase-database.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+       
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    </head>
+
+    <body>
+        <div id="banner" class='col m12'>
+            <span style='color: green'>Reci</span><span style='color:greenyellow'>Pad</span>
+        </div>
+        <div id="container" class="container col m8 offset-m2">
+            <div id='login'>
+                <div id="firebaseui-auth-container"></div>
+                <div id="loader">Loading...</div>
+            </div>
+        </div>
+        <script src="assets/script.js"></script>
+    </body>
+    
+
+   
